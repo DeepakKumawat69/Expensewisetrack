@@ -1,0 +1,102 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Expense Tracker</title>
+    <link rel="stylesheet" href=".js">
+</head>
+<body>
+    <div class="container">
+        <h1>💰 Expense Tracker</h1>
+        
+
+        <div class="section">
+            <h2>Income</h2>
+            <input type="text" id="income-desc" placeholder="Description">
+            <input type="number" id="income-amount" placeholder="Amount">
+            <button onclick="addIncome()">Add Income</button>
+        </div>
+        
+
+        <div class="section">
+            <h2>Expenses</h2>
+            <input type="text" id="expense-desc" placeholder="Description">
+            <select id="expense-category">
+                <option value="Food">Food</option>
+                <option value="Transport">Transport</option>
+                <option value="Utilities">Utilities</option>
+                <option value="Other">Other</option>
+            </select>
+            <input type="number" id="expense-amount" placeholder="Amount">
+            <button onclick="addExpense()">Add Expense</button>
+        </div>
+        
+
+        <div class="summary">
+            <p>Balance: ₹<span id="balance">0</span></p>
+        </div>
+        
+
+        <ul id="transactions"></ul>
+    </div>
+    <script src="script.js"></script>
+</body>
+</html>
+
+
+
+
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Expense Tracker</title>
+    <link rel="stylesheet" href="styles.css">
+</head>
+<body>
+    <div class="container">
+        <h1>💰 Expense Tracker</h1>
+        
+
+        <div class="section">
+            <h2>Income</h2>
+            <input type="text" id="income-desc" placeholder="Description">
+            <input type="number" id="income-amount" placeholder="Amount">
+            <button onclick="addIncome()">Add Income</button>
+        </div>
+        
+
+        <div class="section">
+            <h2>Expenses</h2>
+            <input type="text" id="expense-desc" placeholder="Description">
+            <select id="expense-category">
+                <option value="Food">Food</option>
+                <option value="Transport">Transport</option>
+                <option value="Utilities">Utilities</option>
+                <option value="Other">Other</option>
+            </select>
+            <input type="number" id="expense-amount" placeholder="Amount">
+            <button onclick="addExpense()">Add Expense</button>
+        </div>
+        
+
+        <div class="summary">
+            <p>Balance: ₹<span id="balance">0</span></p>
+        </div>
+
+
+                  <option value="Food">Food</option>
+                <option value="Transport">Transport</option>
+                <option value="Utilities">Utilities</option>
+                <option value="Other">Other</option>
+            </select>
+            <input type="number" id="expense-amount" placeholder="Amount">
+            <button onclick="addExpense()">Add Expense</button>
+        </div>
+        
+
+        <div class="summary">
+            <p>Balance: ₹<span id="balance">0</span></p>
+        </div>
