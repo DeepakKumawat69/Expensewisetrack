@@ -1,246 +1,524 @@
-<!-- <!-- <!DOCTYPE html>
+<!DOCTYPE html>
 <html lang="en">
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Expense Tracker</title>
-    <link rel="stylesheet" href=".js">
-</head>
-<body>
-    <div class="container">
-        <h1>💰 Expense Tracker</h1>
-        
-
-        <div class="section">
-            <h2>Income</h2>
-            <input type="text" id="income-desc" placeholder="Description">
-            <input type="number" id="income-amount" placeholder="Amount">
-            <button onclick="addIncome()">Add Income</button>
-        </div> -->
-        
-
-        <!-- <div class="section">
-            <h2>Expenses</h2>
-            <input type="text" id="expense-desc" placeholder="Description">
-            <select id="expense-category">
-                <option value="Food">Food</option>
-                <option value="Transport">Transport</option>
-                <option value="Utilities">Utilities</option>
-                <option value="Other">Other</option>
-            </select>
-            <input type="number" id="expense-amount" placeholder="Amount">
-            <button onclick="addExpense()">Add Expense</button>
-        </div>
-        
-
-        <div class="summary">
-            <p>Balance: ₹<span id="balance">0</span></p>
-        </div>
-        
-
-        <ul id="transactions"></ul>
-    </div>
-    <script src="script.js"></script>
-</body>
-</html>
-         -->
-
-         -->
-         <!DOCTYPE html>
-<html lang="en">
-<head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Welcome - What's your name?</title>
+    <title>ExpenseWise Dashboard</title>
     <style>
-        * {
-            margin: 0;
-            padding: 0;
-            box-sizing: border-box;
+        /* --- Global Reset & Base Styles --- */
+        * { margin: 0; padding: 0; box-sizing: border-box; }
+        
+        body {
+            font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, Helvetica, Arial, sans-serif;
+            background-color: #f8fafc; /* Very light grey/white background */
+            color: #1f2937;
+            min-height: 100vh;
         }
 
-        body {
-            font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, Oxygen, Ubuntu, Cantarell, sans-serif;
-            background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
-            min-height: 100vh;
-            display: flex;
-            align-items: center;
-            justify-content: center;
+        /* --- Hide Pages Logic --- */
+        .page { display: none; animation: fadeIn 0.3s ease; }
+        .page.active { display: block; }
+        @keyframes fadeIn { from { opacity: 0; transform: translateY(10px); } to { opacity: 1; transform: translateY(0); } }
+
+        /* --- Onboarding Pages (1, 2, 3) Shared Styles --- */
+        .onboarding-container {
+            max-width: 450px;
+            margin: 40px auto;
             padding: 20px;
         }
-
-        .container {
+        .onboarding-card {
             background: white;
-            border-radius: 20px;
+            border-radius: 24px;
             padding: 40px;
-            max-width: 480px;
-            width: 100%;
-            box-shadow: 0 20px 60px rgba(0, 0, 0, 0.3);
+            box-shadow: 0 10px 40px rgba(0, 0, 0, 0.08);
+        }
+        h1 { font-size: 28px; font-weight: 800; text-align: center; margin-bottom: 8px; color: #111827; }
+        .subtitle { text-align: center; color: #6b7280; margin-bottom: 30px; font-size: 15px; }
+        
+        .form-group { margin-bottom: 20px; }
+        label { display: block; font-weight: 600; margin-bottom: 8px; color: #374151; }
+        
+        input, select {
+            width: 100%; padding: 14px; border: 2px solid #e5e7eb; border-radius: 12px;
+            font-size: 16px; background: #f9fafb; outline: none; transition: all 0.2s;
+        }
+        input:focus, select:focus { border-color: #10b981; background: white; }
+
+        .btn {
+            width: 100%; padding: 16px; border-radius: 12px; font-size: 16px; font-weight: 600;
+            cursor: pointer; border: none; transition: all 0.2s; display: flex; align-items: center; justify-content: center; gap: 8px;
+        }
+        .btn-primary { background: #10b981; color: white; box-shadow: 0 4px 12px rgba(16, 185, 129, 0.3); }
+        .btn-primary:hover { background: #059669; }
+        .btn-outline { background: white; border: 2px solid #e5e7eb; color: #374151; }
+        .btn-outline:hover { background: #f3f4f6; }
+        .button-group { display: flex; gap: 12px; margin-top: 24px; }
+        
+        .progress-dots { display: flex; justify-content: center; gap: 8px; margin-bottom: 32px; }
+        .dot { width: 8px; height: 8px; border-radius: 50%; background: #e5e7eb; }
+        .dot.active { background: #10b981; width: 24px; border-radius: 4px; }
+
+        /* --- DASHBOARD STYLES (Page 4) --- */
+        .dashboard-container {
+            max-width: 600px;
+            margin: 0 auto;
+            padding-bottom: 100px; /* Space for bottom nav */
+            background: #f8fafc;
+            min-height: 100vh;
         }
 
-        .header {
-            text-align: center;
-            margin-bottom: 30px;
-        }
-
-        .header h1 {
-            font-size: 32px;
-            color: #1a1a1a;
-            margin-bottom: 12px;
-            font-weight: 700;
-            line-height: 1.3;
-        }
-
-        .header p {
-            color: #6b7280;
-            font-size: 16px;
-        }
-
-        .progress-indicator {
+        /* Header */
+        .dash-header {
+            padding: 20px 20px 10px;
             display: flex;
-            justify-content: center;
+            justify-content: space-between;
+            align-items: flex-start;
+            background: #f8fafc; /* Matches body or slightly distinct */
+        }
+        .header-text h1 { font-size: 24px; font-weight: 800; color: #111827; margin-bottom: 4px; text-align: left; }
+        .header-text p { color: #6b7280; font-size: 14px; }
+        .header-icons { display: flex; gap: 16px; font-size: 20px; color: #4b5563; cursor: pointer; }
+        
+        /* Filter Tabs */
+        .filter-tabs {
+            display: flex;
             gap: 8px;
-            margin-bottom: 40px;
+            padding: 15px 20px;
+            overflow-x: auto;
         }
-
-        .progress-dot {
-            width: 40px;
-            height: 6px;
-            border-radius: 3px;
-            background: #e5e7eb;
-            transition: background 0.3s ease;
-        }
-
-        .progress-dot.active {
-            background: #10b981;
-        }
-
-        .form-group {
-            margin-bottom: 24px;
-        }
-
-        .form-group label {
-            display: block;
-            margin-bottom: 8px;
-            color: #374151;
-            font-weight: 500;
-            font-size: 14px;
-        }
-
-        .form-group input {
-            width: 100%;
-            padding: 14px 16px;
-            border: 2px solid #e5e7eb;
-            border-radius: 10px;
-            font-size: 16px;
-            transition: all 0.3s ease;
-            outline: none;
-        }
-
-        .form-group input:focus {
-            border-color: #10b981;
-            box-shadow: 0 0 0 3px rgba(16, 185, 129, 0.1);
-        }
-
-        .btn-continue {
-            width: 100%;
-            padding: 16px;
-            background: #86efac;
-            color: white;
-            border: none;
-            border-radius: 10px;
-            font-size: 16px;
+        .tab {
+            padding: 8px 16px;
+            border-radius: 8px;
+            font-size: 13px;
             font-weight: 600;
+            background: white;
+            border: 1px solid #e5e7eb;
+            color: #6b7280;
             cursor: pointer;
+            white-space: nowrap;
+        }
+        .tab.active {
+            background: #10b981;
+            color: white;
+            border-color: #10b981;
+        }
+
+        /* Total Spent Card */
+        .summary-card {
+            margin: 0 20px 30px;
+            background: #10b981; /* Green */
+            border-radius: 20px;
+            padding: 24px;
+            color: white;
+            position: relative;
+            overflow: hidden;
+            box-shadow: 0 10px 25px rgba(16, 185, 129, 0.3);
+        }
+        .summary-card .top-row { display: flex; justify-content: space-between; align-items: flex-start; }
+        .summary-card .amount { font-size: 36px; font-weight: 800; margin-top: 8px; }
+        .summary-card .wallet-icon { font-size: 32px; opacity: 0.8; }
+        
+        .budget-row { margin-top: 20px; }
+        .budget-label { font-size: 14px; opacity: 0.9; display: flex; justify-content: space-between; margin-bottom: 8px; }
+        .progress-bg { width: 100%; height: 6px; background: rgba(255,255,255,0.3); border-radius: 10px; overflow: hidden; }
+        .progress-fill { height: 100%; background: white; width: 0%; border-radius: 10px; transition: width 0.5s ease; }
+
+        /* Recent Transactions */
+        .section-header {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            padding: 0 20px 15px;
+        }
+        .section-header h3 { font-size: 18px; font-weight: 700; color: #111827; }
+        .view-all { color: #10b981; font-weight: 600; font-size: 14px; text-decoration: none; cursor: pointer; }
+        
+        .empty-state {
+            margin: 0 20px;
+            background: #f3f4f6;
+            border-radius: 20px;
+            padding: 40px 20px;
+            text-align: center;
+            border: 1px dashed #e5e7eb;
+        }
+        .empty-icon { font-size: 48px; margin-bottom: 16px; color: #9ca3af; }
+        .empty-state h4 { color: #4b5563; font-size: 16px; margin-bottom: 8px; }
+        .empty-state p { color: #6b7280; font-size: 14px; }
+
+        /* FAB */
+        .fab {
+            position: fixed;
+            bottom: 90px;
+            right: 20px;
+            width: 56px;
+            height: 56px;
+            background: #10b981;
+            border-radius: 50%;
             display: flex;
             align-items: center;
             justify-content: center;
-            gap: 8px;
-            transition: all 0.3s ease;
+            color: white;
+            font-size: 28px;
+            box-shadow: 0 4px 15px rgba(16, 185, 129, 0.4);
+            cursor: pointer;
+            z-index: 100;
+            transition: transform 0.2s;
         }
+        .fab:hover { transform: scale(1.05); }
 
-        .btn-continue:hover {
-            background: #10b981;
-            transform: translateY(-2px);
-            box-shadow: 0 4px 12px rgba(16, 185, 129, 0.4);
+        /* Bottom Nav */
+        .bottom-nav {
+            position: fixed;
+            bottom: 0;
+            left: 0;
+            width: 100%;
+            background: white;
+            display: flex;
+            justify-content: space-around;
+            padding: 12px 0 20px; /* Extra padding for safe area */
+            box-shadow: 0 -5px 20px rgba(0,0,0,0.05);
+            z-index: 99;
         }
-
-        .btn-continue:active {
-            transform: translateY(0);
+        .nav-item {
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            gap: 4px;
+            color: #9ca3af;
+            font-size: 11px;
+            font-weight: 500;
+            cursor: pointer;
         }
+        .nav-item.active { color: #10b981; }
+        .nav-icon { font-size: 22px; }
 
-        .arrow {
-            font-size: 18px;
-            transition: transform 0.3s ease;
+        /* Expense List Item (For when items are added) */
+        .expense-item {
+            margin: 0 20px 12px;
+            background: white;
+            padding: 16px;
+            border-radius: 16px;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            box-shadow: 0 2px 8px rgba(0,0,0,0.04);
+            animation: fadeIn 0.3s ease;
         }
+        .item-left { display: flex; gap: 12px; align-items: center; }
+        .icon-box { width: 40px; height: 40px; border-radius: 12px; background: #ecfdf5; display: flex; align-items: center; justify-content: center; font-size: 18px; }
+        .item-details h4 { font-size: 15px; color: #111827; }
+        .item-details span { font-size: 12px; color: #9ca3af; }
+        .item-right { text-align: right; }
+        .item-amount { font-weight: 700; font-size: 16px; color: #111827; }
 
-        .btn-continue:hover .arrow {
-            transform: translateX(4px);
+        /* Add Expense Modal */
+        .modal {
+            display: none; position: fixed; top: 0; left: 0; width: 100%; height: 100%;
+            background: rgba(0,0,0,0.5); z-index: 200; align-items: flex-end; justify-content: center;
         }
-
-        @media (max-width: 480px) {
-            .container {
-                padding: 30px 20px;
-            }
-
-            .header h1 {
-                font-size: 28px;
-            }
+        .modal.open { display: flex; }
+        .modal-content {
+            background: white; width: 100%; max-width: 600px; border-radius: 24px 24px 0 0;
+            padding: 30px; animation: slideUp 0.3s ease;
         }
+        @keyframes slideUp { from { transform: translateY(100%); } to { transform: translateY(0); } }
     </style>
 </head>
 <body>
-    <div class="container">
-        <div class="header">
-            <h1>Welcome! What's your name?</h1>
-            <p>Let's personalize your experience</p>
-        </div>
 
-        <div class="progress-indicator">
-            <div class="progress-dot active"></div>
-            <div class="progress-dot"></div>
-            <div class="progress-dot"></div>
-        </div>
+    <!-- === ONBOARDING PHASE === -->
 
-        <form id="welcomeForm">
-            <div class="form-group">
-                <label for="name">Your Name</label>
-                <input 
-                    type="text" 
-                    id="name" 
-                    name="name" 
-                    placeholder="ANISH"
-                    autocomplete="name"
-                    required
-                >
+    <!-- Step 1: Name -->
+    <div id="step1" class="page active">
+        <div class="onboarding-container">
+            <div class="onboarding-card">
+                <h1>Welcome!</h1>
+                <p class="subtitle">Let's personalize your experience</p>
+                <div class="progress-dots"><div class="dot active"></div><div class="dot"></div><div class="dot"></div></div>
+                <form id="nameForm">
+                    <div class="form-group">
+                        <label>Your Name</label>
+                        <input type="text" id="nameInput" placeholder="e.g. Deepak" required>
+                    </div>
+                    <button type="submit" class="btn btn-primary">Continue →</button>
+                </form>
+            </div>
+        </div>
+    </div>
+
+    <!-- Step 2: Currency -->
+    <div id="step2" class="page">
+        <div class="onboarding-container">
+            <div class="onboarding-card">
+                <h1>Choose currency</h1>
+                <p class="subtitle">We'll use this for all transactions</p>
+                <div class="progress-dots"><div class="dot"></div><div class="dot active"></div><div class="dot"></div></div>
+                <form id="currencyForm">
+                    <div class="form-group">
+                        <label>Currency</label>
+                        <select id="currencySelect">
+                            <option value="INR">₹ Indian Rupee</option>
+                            <option value="USD">$ US Dollar</option>
+                            <option value="EUR">€ Euro</option>
+                            <option value="GBP">£ British Pound</option>
+                        </select>
+                    </div>
+                    <div class="button-group">
+                        <button type="button" id="backBtn1" class="btn btn-outline">Back</button>
+                        <button type="submit" class="btn btn-primary">Continue →</button>
+                    </div>
+                </form>
+            </div>
+        </div>
+    </div>
+
+    <!-- Step 3: Budget -->
+    <div id="step3" class="page">
+        <div class="onboarding-container">
+            <div class="onboarding-card">
+                <h1>Set budget</h1>
+                <p class="subtitle">Optional, but helps track spending</p>
+                <div class="progress-dots"><div class="dot"></div><div class="dot"></div><div class="dot active"></div></div>
+                <form id="budgetForm">
+                    <div class="form-group">
+                        <label>Monthly Budget</label>
+                        <div style="position: relative;">
+                            <span id="currencySymbol" style="position: absolute; left: 16px; top: 50%; transform: translateY(-50%); color: #6b7280;">₹</span>
+                            <input type="number" id="budgetInput" style="padding-left: 35px;" placeholder="50000">
+                        </div>
+                        <p style="font-size: 12px; color: #9ca3af; margin-top: 8px;">You can change this later in settings</p>
+                    </div>
+                    <div class="button-group">
+                        <button type="button" id="backBtn2" class="btn btn-outline">Back</button>
+                        <button type="submit" class="btn btn-primary">Get Started →</button>
+                    </div>
+                </form>
+            </div>
+        </div>
+    </div>
+
+    <!-- === DASHBOARD (Page 4) === -->
+    <div id="dashboard" class="page">
+        <div class="dashboard-container">
+            
+            <!-- Header -->
+            <div class="dash-header">
+                <div class="header-text">
+                    <h1 id="greetingText">Hello, User!</h1>
+                    <p>Track your spending</p>
+                </div>
+                <div class="header-icons">
+                    <span>🌙</span>
+                    <span>⚙️</span>
+                </div>
             </div>
 
-            <button type="submit" class="btn-continue">
-                Continue
-                <span class="arrow">→</span>
-            </button>
-        </form>
+            <!-- Tabs -->
+            <div class="filter-tabs">
+                <div class="tab">7 Days</div>
+                <div class="tab">14 Days</div>
+                <div class="tab active">This Month</div>
+            </div>
+
+            <!-- Summary Card -->
+            <div class="summary-card">
+                <div class="top-row">
+                    <div>
+                        <div style="opacity: 0.8; font-size: 14px;">Total Spent</div>
+                        <div class="amount" id="totalSpent">₹0.00</div>
+                    </div>
+                    <div class="wallet-icon">👛</div>
+                </div>
+                <div class="budget-row">
+                    <div class="budget-label">
+                        <span>vs Budget</span>
+                        <span id="budgetPercentage">0%</span>
+                    </div>
+                    <div class="progress-bg">
+                        <div class="progress-fill" id="progressBar"></div>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Recent Transactions -->
+            <div class="section-header">
+                <h3>Recent Transactions</h3>
+                <span class="view-all">View All</span>
+            </div>
+
+            <!-- Empty State / List -->
+            <div id="transactionList">
+                <div id="emptyState" class="empty-state">
+                    <div class="empty-icon">👛</div>
+                    <h4>No expenses yet</h4>
+                    <p>Tap the + button to add your first expense</p>
+                </div>
+            </div>
+
+        </div>
+
+        <!-- Floating Action Button -->
+        <div class="fab" onclick="openModal()">+</div>
+
+        <!-- Bottom Navigation -->
+        <div class="bottom-nav">
+            <div class="nav-item active">
+                <div class="nav-icon">🏠</div>
+                <span>Home</span>
+            </div>
+            <div class="nav-item">
+                <div class="nav-icon">📊</div>
+                <span>Analytics</span>
+            </div>
+            <div class="nav-item">
+                <div class="nav-icon">🔄</div>
+                <span>Subscriptions</span>
+            </div>
+            <div class="nav-item">
+                <div class="nav-icon">📄</div>
+                <span>Loans</span>
+            </div>
+        </div>
+    </div>
+
+    <!-- Add Expense Modal -->
+    <div class="modal" id="expenseModal">
+        <div class="modal-content">
+            <h2 style="margin-bottom: 20px;">Add Expense</h2>
+            <form id="addExpenseForm">
+                <div class="form-group">
+                    <label>Amount</label>
+                    <input type="number" id="modalAmount" required style="font-size: 20px; font-weight: bold;">
+                </div>
+                <div class="form-group">
+                    <label>Description</label>
+                    <input type="text" id="modalDesc" placeholder="e.g. Coffee" required>
+                </div>
+                <div class="form-group">
+                    <label>Category</label>
+                    <select id="modalCategory">
+                        <option value="Food">🍔 Food</option>
+                        <option value="Travel">🚗 Travel</option>
+                        <option value="Shopping">🛍️ Shopping</option>
+                        <option value="Bills">📄 Bills</option>
+                        <option value="Other">📦 Other</option>
+                    </select>
+                </div>
+                <div class="button-group">
+                    <button type="button" class="btn btn-outline" onclick="closeModal()">Cancel</button>
+                    <button type="submit" class="btn btn-primary">Save Expense</button>
+                </div>
+            </form>
+        </div>
     </div>
 
     <script>
-        document.getElementById('welcomeForm').addEventListener('submit', function(e) {
+        // State
+        let userData = { name: '', currency: 'INR', symbol: '₹', budget: 0 };
+        let expenses = [];
+        const currencyMap = { 'INR': '₹', 'USD': '$', 'EUR': '€', 'GBP': '£' };
+
+        // Navigation
+        document.getElementById('nameForm').addEventListener('submit', (e) => {
             e.preventDefault();
-            
-            const name = document.getElementById('name').value;
-            
-            if (name.trim()) {
-                // Store the name or proceed to next step
-                localStorage.setItem('userName', name);
-                
-                // You can redirect to next page or show next step
-                alert(`Welcome, ${name}! Proceeding to next step...`);
-                
-                // Example: window.location.href = '/next-page';
-            }
+            userData.name = document.getElementById('nameInput').value;
+            switchPage('step1', 'step2');
         });
 
-        // Optional: Auto-focus on input when page loads
-        document.getElementById('name').focus();
+        document.getElementById('currencyForm').addEventListener('submit', (e) => {
+            e.preventDefault();
+            userData.currency = document.getElementById('currencySelect').value;
+            userData.symbol = currencyMap[userData.currency];
+            document.getElementById('currencySymbol').innerText = userData.symbol;
+            switchPage('step2', 'step3');
+        });
+
+        document.getElementById('budgetForm').addEventListener('submit', (e) => {
+            e.preventDefault();
+            const val = document.getElementById('budgetInput').value;
+            userData.budget = val ? parseFloat(val) : 0;
+            switchPage('step3', 'dashboard');
+            initDashboard();
+        });
+
+        document.getElementById('backBtn1').onclick = () => switchPage('step2', 'step1');
+        document.getElementById('backBtn2').onclick = () => switchPage('step3', 'step2');
+
+        function switchPage(hideId, showId) {
+            document.getElementById(hideId).classList.remove('active');
+            document.getElementById(showId).classList.add('active');
+        }
+
+        // Dashboard Logic
+        function initDashboard() {
+            document.getElementById('greetingText').innerText = `Hello, ${userData.name}!`;
+            updateUI();
+        }
+
+        function updateUI() {
+            const total = expenses.reduce((sum, item) => sum + item.amount, 0);
+            document.getElementById('totalSpent').innerText = `${userData.symbol}${total.toFixed(2)}`;
+
+            // Progress Bar
+            if (userData.budget > 0) {
+                const percent = Math.min((total / userData.budget) * 100, 100);
+                document.getElementById('progressBar').style.width = percent + '%';
+                document.getElementById('budgetPercentage').innerText = Math.round(percent) + '%';
+            } else {
+                document.getElementById('progressBar').style.width = '0%';
+                document.getElementById('budgetPercentage').innerText = 'No budget set';
+            }
+
+            // Transaction List
+            const listEl = document.getElementById('transactionList');
+            const emptyEl = document.getElementById('emptyState');
+            
+            // Remove existing items (except empty state logic handled below)
+            listEl.querySelectorAll('.expense-item').forEach(el => el.remove());
+
+            if (expenses.length === 0) {
+                emptyEl.style.display = 'block';
+            } else {
+                emptyEl.style.display = 'none';
+                expenses.forEach(exp => {
+                    const item = document.createElement('div');
+                    item.className = 'expense-item';
+                    item.innerHTML = `
+                        <div class="item-left">
+                            <div class="icon-box">💸</div>
+                            <div class="item-details">
+                                <h4>${exp.desc}</h4>
+                                <span>${exp.category}</span>
+                            </div>
+                        </div>
+                        <div class="item-right">
+                            <div class="item-amount">-${userData.symbol}${exp.amount.toFixed(2)}</div>
+                        </div>
+                    `;
+                    listEl.prepend(item);
+                });
+            }
+        }
+
+        // Modal Logic
+        function openModal() {
+            document.getElementById('expenseModal').classList.add('open');
+        }
+        function closeModal() {
+            document.getElementById('expenseModal').classList.remove('open');
+        }
+
+        document.getElementById('addExpenseForm').addEventListener('submit', (e) => {
+            e.preventDefault();
+            const amount = parseFloat(document.getElementById('modalAmount').value);
+            const desc = document.getElementById('modalDesc').value;
+            const category = document.getElementById('modalCategory').value;
+
+            expenses.push({ amount, desc, category });
+            closeModal();
+            updateUI();
+            e.target.reset();
+        });
     </script>
 </body>
 </html>
