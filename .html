@@ -297,7 +297,7 @@
         </div>
     </div>
 
-    <!-- === DASHBOARD (Page 4) === -->
+    === DASHBOARD (Page 4) 
     <div id="dashboard" class="page">
         <div class="dashboard-container">
             
@@ -501,6 +501,32 @@
         }
 
         // Modal Logic
+        function openModal() {
+            document.getElementById('expenseModal').classList.add('open');
+        }
+        function closeModal() {
+            document.getElementById('expenseModal').classList.remove('open');
+        }
+
+        document.getElementById('addExpenseForm').addEventListener('submit', (e) => {
+            e.preventDefault();
+            const amount = parseFloat(document.getElementById('modalAmount').value);
+            const desc = document.getElementById('modalDesc').value;
+            const category = document.getElementById('modalCategory').value;
+
+            expenses.push({ amount, desc, category });
+            closeModal();
+            updateUI();
+            e.target.reset();
+        });
+    </script>
+</body>
+</html>
+
+
+
+
+       // Modal Logic
         function openModal() {
             document.getElementById('expenseModal').classList.add('open');
         }
