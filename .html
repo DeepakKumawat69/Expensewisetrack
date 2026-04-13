@@ -459,7 +459,12 @@
             const total = expenses.reduce((sum, item) => sum + item.amount, 0);
             document.getElementById('totalSpent').innerText = `${userData.symbol}${total.toFixed(2)}`;
 
-            // Progress Bar
+           
+            
+
+
+
+             // Progress Bar
             if (userData.budget > 0) {
                 const percent = Math.min((total / userData.budget) * 100, 100);
                 document.getElementById('progressBar').style.width = percent + '%';
@@ -513,10 +518,6 @@
             const amount = parseFloat(document.getElementById('modalAmount').value);
             const desc = document.getElementById('modalDesc').value;
             const category = document.getElementById('modalCategory').value;
-                        const amount = parseFloat(document.getElementById('modalAmount').value);
-            const desc = document.getElementById('modalDesc').value;
-            const category = document.getElementById('modalCategory').value;
-
 
             expenses.push({ amount, desc, category });
             closeModal();
