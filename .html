@@ -5,12 +5,11 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>ExpenseWise Dashboard</title>
     <style>
-        /* --- Global Reset & Base Styles --- */
         * { margin: 0; padding: 0; box-sizing: border-box; }
         
         body {
             font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, Helvetica, Arial, sans-serif;
-            background-color: #f8fafc; /* Very light grey/white background */
+            background-color: #f8fafc; 
             color: #1f2937;
             min-height: 100vh;
         }
@@ -300,60 +299,10 @@
     <=== DASHBOARD (Page 4) ===>
     <div id="dashboard" class="page">
         <div class="dashboard-container">
-            
-            <!-- Header -->
-            <div class="dash-header">
-                <div class="header-text">
-                    <h1 id="greetingText">Hello, User!</h1>
-                    <p>Track your spending</p>
-                </div>
-                <div class="header-icons">
-                    <span>🌙</span>
-                    <span>⚙️</span>
-                </div>
-            </div>
 
-            <!-- Tabs -->
-            <div class="filter-tabs">
-                <div class="tab">7 Days</div>
-                <div class="tab">14 Days</div>
-                <div class="tab active">This Month</div>
-            </div>
 
-            <!-- Summary Card -->
-            <div class="summary-card">
-                <div class="top-row">
-                    <div>
-                        <div style="opacity: 0.8; font-size: 14px;">Total Spent</div>
-                        <div class="amount" id="totalSpent">₹0.00</div>
-                    </div>
-                    <div class="wallet-icon">👛</div>
-                </div>
-                <div class="budget-row">
-                    <div class="budget-label">
-                        <span>vs Budget</span>
-                        <span id="budgetPercentage">0%</span>
-                    </div>
-                    <div class="progress-bg">
-                        <div class="progress-fill" id="progressBar"></div>
-                    </div>
-                </div>
-            </div>
 
-            <!-- Recent Transactions -->
-            <div class="section-header">
-                <h3>Recent Transactions</h3>
-                <span class="view-all">View All</span>
-            </div>
-
-            <!-- Empty State / List -->
-            <div id="transactionList">
-                <div id="emptyState" class="empty-state">
-                    <div class="empty-icon">👛</div>
-                    <h4>No expenses yet</h4>
-                    <p>Tap the + button to add your first expense</p>
-                </div>
-            </div>
+    
 
         </div>
 
@@ -382,34 +331,7 @@
     </div>
 
     <!-- Add Expense Modal -->
-    <div class="modal" id="expenseModal">
-        <div class="modal-content">
-            <h2 style="margin-bottom: 20px;">Add Expense</h2>
-            <form id="addExpenseForm">
-                <div class="form-group">
-                    <label>Amount</label>
-                    <input type="number" id="modalAmount" required style="font-size: 20px; font-weight: bold;">
-                </div>
-                <div class="form-group">
-                    <label>Description</label>
-                    <input type="text" id="modalDesc" placeholder="e.g. Coffee" required>
-                </div>
-                <div class="form-group">
-                    <label>Category</label>
-                    <select id="modalCategory">
-                        <option value="Food">🍔 Food</option>
-                        <option value="Travel">🚗 Travel</option>
-                        <option value="Shopping">🛍️ Shopping</option>
-                        <option value="Bills">📄 Bills</option>
-                        <option value="Other">📦 Other</option>
-                    </select>
-                </div>
-                <div class="button-group">
-                    <button type="button" class="btn btn-outline" onclick="closeModal()">Cancel</button>
-                    <button type="submit" class="btn btn-primary">Save Expense</button>
-                </div>
-            </form>
-        </div>
+   
     </div>
 
     <script>
