@@ -202,19 +202,7 @@
             align-items: center;
             box-shadow: 0 2px 8px rgba(0,0,0,0.04);
             animation: fadeIn 0.3s ease;
-        } }
-        .item-left { display: flex; gap: 12px; align-items: center; }
-        .icon-box { width: 40px; height: 40px; border-radius: 12px; background: #ecfdf5; display: flex; align-items: center; justify-content: center; font-size: 18px; }
-        .item-details h4 { font-size: 15px; color: #111827; }
-        .item-details span { font-size: 12px; color: #9ca3af; }
-        .item-right { text-align: right; }
-        .item-amount { font-weight: 700; font-size: 16px; color: #111827; } }
-        .item-left { display: flex; gap: 12px; align-items: center; }
-        .icon-box { width: 40px; height: 40px; border-radius: 12px; background: #ecfdf5; display: flex; align-items: center; justify-content: center; font-size: 18px; }
-        .item-details h4 { font-size: 15px; color: #111827; }
-        .item-details span { font-size: 12px; color: #9ca3af; }
-        .item-right { text-align: right; }
-        .item-amount { font-weight: 700; font-size: 16px; color: #111827; }
+        }
         .item-left { display: flex; gap: 12px; align-items: center; }
         .icon-box { width: 40px; height: 40px; border-radius: 12px; background: #ecfdf5; display: flex; align-items: center; justify-content: center; font-size: 18px; }
         .item-details h4 { font-size: 15px; color: #111827; }
@@ -441,6 +429,16 @@
         function closeModal() {
             document.getElementById('expenseModal').classList.remove('open');
         }
+        document.getElementById('addExpenseForm').addEventListener('submit', (e) => {
+            e.preventDefault();
+            const amount = parseFloat(document.getElementById('modalAmount').value);
+            const desc = document.getElementById('modalDesc').value;
+            const category = document.getElementById('modalCategory').value;
+        document.getElementById('addExpenseForm').addEventListener('submit', (e) => {
+            e.preventDefault();
+            const amount = parseFloat(document.getElementById('modalAmount').value);
+            const desc = document.getElementById('modalDesc').value;
+            const category = document.getElementById('modalCategory').value;
 
         document.getElementById('addExpenseForm').addEventListener('submit', (e) => {
             e.preventDefault();
