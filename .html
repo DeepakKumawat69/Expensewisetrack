@@ -416,7 +416,29 @@
                         <div class="item-right">
                             <div class="item-amount">-${userData.symbol}${exp.amount.toFixed(2)}</div>
                         </div>
+                    `;                            <div class="icon-box">💸</div>
+                            <div class="item-details">
+                                <h4>${exp.desc}</h4>
+                                <span>${exp.category}</span>
+                            </div>
+                        </div>
+                        <div class="item-right">
+                            <div class="item-amount">-${userData.symbol}${exp.amount.toFixed(2)}</div>
+                        </div>
                     `;
+                    listEl.prepend(item);
+                });                            <div class="icon-box">💸</div>
+                            <div class="item-details">
+                                <h4>${exp.desc}</h4>
+                                <span>${exp.category}</span>
+                            </div>
+                        </div>
+                        <div class="item-right">
+                            <div class="item-amount">-${userData.symbol}${exp.amount.toFixed(2)}</div>
+                        </div>
+                    `;
+                    listEl.prepend(item);
+                });
                     listEl.prepend(item);
                 });
             }
@@ -429,16 +451,6 @@
         function closeModal() {
             document.getElementById('expenseModal').classList.remove('open');
         }
-        document.getElementById('addExpenseForm').addEventListener('submit', (e) => {
-            e.preventDefault();
-            const amount = parseFloat(document.getElementById('modalAmount').value);
-            const desc = document.getElementById('modalDesc').value;
-            const category = document.getElementById('modalCategory').value;
-        document.getElementById('addExpenseForm').addEventListener('submit', (e) => {
-            e.preventDefault();
-            const amount = parseFloat(document.getElementById('modalAmount').value);
-            const desc = document.getElementById('modalDesc').value;
-            const category = document.getElementById('modalCategory').value;
 
         document.getElementById('addExpenseForm').addEventListener('submit', (e) => {
             e.preventDefault();
