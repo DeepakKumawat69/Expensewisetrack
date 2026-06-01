@@ -362,7 +362,23 @@
             switchPage('step3', 'dashboard');
             initDashboard();
         });
+        });
 
+        document.getElementById('backBtn1').onclick = () => switchPage('step2', 'step1');
+        document.getElementById('backBtn2').onclick = () => switchPage('step3', 'step2');
+
+        function switchPage(hideId, showId) {
+            document.getElementById(hideId).classList.remove('active');
+            document.getElementById(showId).classList.add('active');
+        }        });
+
+        document.getElementById('backBtn1').onclick = () => switchPage('step2', 'step1');
+        document.getElementById('backBtn2').onclick = () => switchPage('step3', 'step2');
+
+        function switchPage(hideId, showId) {
+            document.getElementById(hideId).classList.remove('active');
+            document.getElementById(showId).classList.add('active');
+        }
         document.getElementById('backBtn1').onclick = () => switchPage('step2', 'step1');
         document.getElementById('backBtn2').onclick = () => switchPage('step3', 'step2');
 
@@ -401,31 +417,7 @@
             if (expenses.length === 0) {
                 emptyEl.style.display = 'block';
             } else {
-              } else {
                 emptyEl.style.display = 'none';
-                expenses.forEach(exp => {
-                    const item = document.createElement('div');
-                    item.className = 'expense-item';
-                    item.innerHTML = `
-                        <div class="item-left">
-                            <div class="icon-box">💸</div>
-                            <div class="item-details">
-                                <h4>${exp.desc}</h4>
-                                <span>${exp.category}</span>
-                            </div>
-                        </div>            } else {
-                emptyEl.style.display = 'none';
-                expenses.forEach(exp => {
-                    const item = document.createElement('div');
-                    item.className = 'expense-item';
-                    item.innerHTML = `
-                        <div class="item-left">
-                            <div class="icon-box">💸</div>
-                            <div class="item-details">
-                                <h4>${exp.desc}</h4>
-                                <span>${exp.category}</span>
-                            </div>
-                        </div>              emptyEl.style.display = 'none';
                 expenses.forEach(exp => {
                     const item = document.createElement('div');
                     item.className = 'expense-item';
