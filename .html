@@ -362,23 +362,7 @@
             switchPage('step3', 'dashboard');
             initDashboard();
         });
-        });
 
-        document.getElementById('backBtn1').onclick = () => switchPage('step2', 'step1');
-        document.getElementById('backBtn2').onclick = () => switchPage('step3', 'step2');
-
-        function switchPage(hideId, showId) {
-            document.getElementById(hideId).classList.remove('active');
-            document.getElementById(showId).classList.add('active');
-        }        });
-
-        document.getElementById('backBtn1').onclick = () => switchPage('step2', 'step1');
-        document.getElementById('backBtn2').onclick = () => switchPage('step3', 'step2');
-
-        function switchPage(hideId, showId) {
-            document.getElementById(hideId).classList.remove('active');
-            document.getElementById(showId).classList.add('active');
-        }
         document.getElementById('backBtn1').onclick = () => switchPage('step2', 'step1');
         document.getElementById('backBtn2').onclick = () => switchPage('step3', 'step2');
 
