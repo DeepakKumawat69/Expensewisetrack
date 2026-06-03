@@ -363,6 +363,18 @@
             initDashboard();
         });
 
+        document.getElementById('budgetForm').addEventListener('submit', (e) => {
+            e.preventDefault();
+            const val = document.getElementById('budgetInput').value;
+            userData.budget = val ? parseFloat(val) : 0;
+            switchPage('step3', 'dashboard');
+            initDashboard();
+        document.getElementById('budgetForm').addEventListener('submit', (e) => {
+            e.preventDefault();
+            const val = document.getElementById('budgetInput').value;
+            userData.budget = val ? parseFloat(val) : 0;
+            switchPage('step3', 'dashboard');
+            initDashboard();
         document.getElementById('backBtn1').onclick = () => switchPage('step2', 'step1');
         document.getElementById('backBtn2').onclick = () => switchPage('step3', 'step2');
 
