@@ -401,6 +401,26 @@
             if (expenses.length === 0) {
                 emptyEl.style.display = 'block';
             } else {
+                emptyEl.style.display = 'none';       // Transaction List
+            const listEl = document.getElementById('transactionList');
+            const emptyEl = document.getElementById('emptyState');
+            
+            // Remove existing items (except empty state logic handled below)
+            listEl.querySelectorAll('.expense-item').forEach(el => el.remove());
+
+            if (expenses.length === 0) {
+                emptyEl.style.display = 'block';
+            } else {
+                emptyEl.style.display = 'none';       // Transaction List
+            const listEl = document.getElementById('transactionList');
+            const emptyEl = document.getElementById('emptyState');
+            
+            // Remove existing items (except empty state logic handled below)
+            listEl.querySelectorAll('.expense-item').forEach(el => el.remove());
+
+            if (expenses.length === 0) {
+                emptyEl.style.display = 'block';
+            } else {
                 emptyEl.style.display = 'none';
                 expenses.forEach(exp => {
                     const item = document.createElement('div');
