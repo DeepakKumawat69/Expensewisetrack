@@ -346,17 +346,7 @@
             userData.name = document.getElementById('nameInput').value;
             switchPage('step1', 'step2');
         });
-    document.getElementById('currencyForm').addEventListener('submit', (e) => {
-            e.preventDefault();
-            userData.currency = document.getElementById('currencySelect').value;
-            userData.symbol = currencyMap[userData.currency];
-            document.getElementById('currencySymbol').innerText = userData.symbol;
-            switchPage('step2', 'step3');    document.getElementById('currencyForm').addEventListener('submit', (e) => {
-            e.preventDefault();
-            userData.currency = document.getElementById('currencySelect').value;
-            userData.symbol = currencyMap[userData.currency];
-            document.getElementById('currencySymbol').innerText = userData.symbol;
-            switchPage('step2', 'step3');
+
         document.getElementById('currencyForm').addEventListener('submit', (e) => {
             e.preventDefault();
             userData.currency = document.getElementById('currencySelect').value;
@@ -372,7 +362,19 @@
             switchPage('step3', 'dashboard');
             initDashboard();
         });
-
+        document.getElementById('budgetForm').addEventListener('submit', (e) => {
+            e.preventDefault();
+            const val = document.getElementById('budgetInput').value;
+            userData.budget = val ? parseFloat(val) : 0;
+            switchPage('step3', 'dashboard');
+            initDashboard();
+        });        document.getElementById('budgetForm').addEventListener('submit', (e) => {
+            e.preventDefault();
+            const val = document.getElementById('budgetInput').value;
+            userData.budget = val ? parseFloat(val) : 0;
+            switchPage('step3', 'dashboard');
+            initDashboard();
+        });
         document.getElementById('backBtn1').onclick = () => switchPage('step2', 'step1');
         document.getElementById('backBtn2').onclick = () => switchPage('step3', 'step2');
 
