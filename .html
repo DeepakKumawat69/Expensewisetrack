@@ -390,32 +390,7 @@
                 document.getElementById('progressBar').style.width = '0%';
                 document.getElementById('budgetPercentage').innerText = 'No budget set';
             }
-        function updateUI() {
-            const total = expenses.reduce((sum, item) => sum + item.amount, 0);
-            document.getElementById('totalSpent').innerText = `${userData.symbol}${total.toFixed(2)}`;
 
-            // Progress Bar
-            if (userData.budget > 0) {
-                const percent = Math.min((total / userData.budget) * 100, 100);
-                document.getElementById('progressBar').style.width = percent + '%';
-                document.getElementById('budgetPercentage').innerText = Math.round(percent) + '%';
-            } else {
-                document.getElementById('progressBar').style.width = '0%';
-                document.getElementById('budgetPercentage').innerText = 'No budget set';
-            }
-                    function updateUI() {
-            const total = expenses.reduce((sum, item) => sum + item.amount, 0);
-            document.getElementById('totalSpent').innerText = `${userData.symbol}${total.toFixed(2)}`;
-
-            // Progress Bar
-            if (userData.budget > 0) {
-                const percent = Math.min((total / userData.budget) * 100, 100);
-                document.getElementById('progressBar').style.width = percent + '%';
-                document.getElementById('budgetPercentage').innerText = Math.round(percent) + '%';
-            } else {
-                document.getElementById('progressBar').style.width = '0%';
-                document.getElementById('budgetPercentage').innerText = 'No budget set';
-            }
             // Transaction List
             const listEl = document.getElementById('transactionList');
             const emptyEl = document.getElementById('emptyState');
