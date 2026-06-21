@@ -440,6 +440,35 @@
                     listEl.prepend(item);
                 });
             }
+
+                         item.innerHTML = `
+                        <div class="item-left">
+                            <div class="icon-box">💸</div>
+                            <div class="item-details">
+                                <h4>${exp.desc}</h4>
+                                <span>${exp.category}</span>
+                            </div>
+                        </div>
+                        <div class="item-right">
+                            <div class="item-amount">-${userData.symbol}${exp.amount.toFixed(2)}</div>
+                        </div>
+                    `;
+                    listEl.prepend(item);
+                });
+                             item.innerHTML = `
+                        <div class="item-left">
+                            <div class="icon-box">💸</div>
+                            <div class="item-details">
+                                <h4>${exp.desc}</h4>
+                                <span>${exp.category}</span>
+                            </div>
+                        </div>
+                        <div class="item-right">
+                            <div class="item-amount">-${userData.symbol}${exp.amount.toFixed(2)}</div>
+                        </div>
+                    `;
+                    listEl.prepend(item);
+                });
         }
 
         // Modal Logic
