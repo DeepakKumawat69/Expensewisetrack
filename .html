@@ -398,28 +398,6 @@
             // Remove existing items (except empty state logic handled below)
             listEl.querySelectorAll('.expense-item').forEach(el => el.remove());
 
-                        } else {
-                document.getElementById('progressBar').style.width = '0%';
-                document.getElementById('budgetPercentage').innerText = 'No budget set';
-            }
-
-            // Transaction List
-            const listEl = document.getElementById('transactionList');
-            const emptyEl = document.getElementById('emptyState');
-            
-            // Remove existing items (except empty state logic handled below)
-            listEl.querySelectorAll('.expense-item').forEach(el => el.remove());
-                        } else {
-                document.getElementById('progressBar').style.width = '0%';
-                document.getElementById('budgetPercentage').innerText = 'No budget set';
-            }
-
-            // Transaction List
-            const listEl = document.getElementById('transactionList');
-            const emptyEl = document.getElementById('emptyState');
-            
-            // Remove existing items (except empty state logic handled below)
-            listEl.querySelectorAll('.expense-item').forEach(el => el.remove());
             if (expenses.length === 0) {
                 emptyEl.style.display = 'block';
             } else {
