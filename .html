@@ -178,7 +178,28 @@
             box-shadow: 0 -5px 20px rgba(0,0,0,0.05);
             z-index: 99;
         }
-        .nav-item {
+        .nav-item {     position: fixed;
+            bottom: 0;
+            left: 0;
+            width: 100%;
+            background: white;
+            display: flex;
+            justify-content: space-around;
+            padding: 12px 0 20px; /* Extra padding for safe area */
+            box-shadow: 0 -5px 20px rgba(0,0,0,0.05);
+            z-index: 99;
+        }
+             position: fixed;
+            bottom: 0;
+            left: 0;
+            width: 100%;
+            background: white;
+            display: flex;
+            justify-content: space-around;
+            padding: 12px 0 20px; /* Extra padding for safe area */
+            box-shadow: 0 -5px 20px rgba(0,0,0,0.05);
+            z-index: 99;
+        }
             display: flex;
             flex-direction: column;
             align-items: center;
@@ -390,24 +411,7 @@
                 document.getElementById('progressBar').style.width = '0%';
                 document.getElementById('budgetPercentage').innerText = 'No budget set';
             }
-            // Progress Bar
-            if (userData.budget > 0) {
-                const percent = Math.min((total / userData.budget) * 100, 100);
-                document.getElementById('progressBar').style.width = percent + '%';
-                document.getElementById('budgetPercentage').innerText = Math.round(percent) + '%';
-            } else {
-                document.getElementById('progressBar').style.width = '0%';
-                document.getElementById('budgetPercentage').innerText = 'No budget set';
-            }
-                        // Progress Bar
-            if (userData.budget > 0) {
-                const percent = Math.min((total / userData.budget) * 100, 100);
-                document.getElementById('progressBar').style.width = percent + '%';
-                document.getElementById('budgetPercentage').innerText = Math.round(percent) + '%';
-            } else {
-                document.getElementById('progressBar').style.width = '0%';
-                document.getElementById('budgetPercentage').innerText = 'No budget set';
-            }
+
             // Transaction List
             const listEl = document.getElementById('transactionList');
             const emptyEl = document.getElementById('emptyState');
