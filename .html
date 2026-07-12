@@ -333,38 +333,6 @@
     <!-- Add Expense Modal -->
    
     </div>
-                    <span>Analytics</span>
-            </div>
-            <div class="nav-item">
-                <div class="nav-icon">🔄</div>
-                <span>Subscriptions</span>
-            </div>
-            <div class="nav-item">
-                <div class="nav-icon">📄</div>
-                <span>Loans</span>
-            </div>
-        </div>
-    </div>
-
-    <!-- Add Expense Modal -->
-   
-    </div>
-                    <span>Analytics</span>
-            </div>
-            <div class="nav-item">
-                <div class="nav-icon">🔄</div>
-                <span>Subscriptions</span>
-            </div>
-            <div class="nav-item">
-                <div class="nav-icon">📄</div>
-                <span>Loans</span>
-            </div>
-        </div>
-    </div>
-
-    <!-- Add Expense Modal -->
-   
-    </div>
 
     <script>
         // State
@@ -386,7 +354,20 @@
             document.getElementById('currencySymbol').innerText = userData.symbol;
             switchPage('step2', 'step3');
         });
-
+        document.getElementById('currencyForm').addEventListener('submit', (e) => {
+            e.preventDefault();
+            userData.currency = document.getElementById('currencySelect').value;
+            userData.symbol = currencyMap[userData.currency];
+            document.getElementById('currencySymbol').innerText = userData.symbol;
+            switchPage('step2', 'step3');
+        });
+                document.getElementById('currencyForm').addEventListener('submit', (e) => {
+            e.preventDefault();
+            userData.currency = document.getElementById('currencySelect').value;
+            userData.symbol = currencyMap[userData.currency];
+            document.getElementById('currencySymbol').innerText = userData.symbol;
+            switchPage('step2', 'step3');
+        });
         document.getElementById('budgetForm').addEventListener('submit', (e) => {
             e.preventDefault();
             const val = document.getElementById('budgetInput').value;
