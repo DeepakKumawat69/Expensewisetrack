@@ -354,20 +354,7 @@
             document.getElementById('currencySymbol').innerText = userData.symbol;
             switchPage('step2', 'step3');
         });
-        document.getElementById('currencyForm').addEventListener('submit', (e) => {
-            e.preventDefault();
-            userData.currency = document.getElementById('currencySelect').value;
-            userData.symbol = currencyMap[userData.currency];
-            document.getElementById('currencySymbol').innerText = userData.symbol;
-            switchPage('step2', 'step3');
-        });
-                document.getElementById('currencyForm').addEventListener('submit', (e) => {
-            e.preventDefault();
-            userData.currency = document.getElementById('currencySelect').value;
-            userData.symbol = currencyMap[userData.currency];
-            document.getElementById('currencySymbol').innerText = userData.symbol;
-            switchPage('step2', 'step3');
-        });
+
         document.getElementById('budgetForm').addEventListener('submit', (e) => {
             e.preventDefault();
             const val = document.getElementById('budgetInput').value;
@@ -475,5 +462,34 @@
             e.target.reset();
         });
     </script>
+
+
+          document.getElementById('addExpenseForm').addEventListener('submit', (e) => {
+            e.preventDefault();
+            const amount = parseFloat(document.getElementById('modalAmount').value);
+            const desc = document.getElementById('modalDesc').value;
+            const category = document.getElementById('modalCategory').value;
+
+            expenses.push({ amount, desc, category });
+            closeModal();
+            updateUI();
+            e.target.reset();
+        });
+    </script>
+
+          document.getElementById('addExpenseForm').addEventListener('submit', (e) => {
+            e.preventDefault();
+            const amount = parseFloat(document.getElementById('modalAmount').value);
+            const desc = document.getElementById('modalDesc').value;
+            const category = document.getElementById('modalCategory').value;
+
+            expenses.push({ amount, desc, category });
+            closeModal();
+            updateUI();
+            e.target.reset();
+        });
+    </script>
+
+    
 </body>
 </html>
