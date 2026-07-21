@@ -224,6 +224,25 @@
     </style>
 </head>
 <body>
+        .modal.open { display: flex; }
+        .modal-content {
+            background: white; width: 100%; max-width: 600px; border-radius: 24px 24px 0 0;
+            padding: 30px; animation: slideUp 0.3s ease;
+        }
+        @keyframes slideUp { from { transform: translateY(100%); } to { transform: translateY(0); } }
+    </style>
+</head>
+<body>
+
+            .modal.open { display: flex; }
+        .modal-content {
+            background: white; width: 100%; max-width: 600px; border-radius: 24px 24px 0 0;
+            padding: 30px; animation: slideUp 0.3s ease;
+        }
+        @keyframes slideUp { from { transform: translateY(100%); } to { transform: translateY(0); } }
+    </style>
+</head>
+<body>
 
     <!-- === ONBOARDING PHASE === -->
 
@@ -254,30 +273,6 @@
                 <div class="progress-dots"><div class="dot"></div><div class="dot active"></div><div class="dot"></div></div>
                 <form id="currencyForm">
                     <div class="form-group">
-                                                <select id="currencySelect">
-                            <option value="INR">₹ Indian Rupee</option>
-                            <option value="USD">$ US Dollar</option>
-                            <option value="EUR">€ Euro</option>
-                            <option value="GBP">£ British Pound</option>
-                        </select>
-                    </div>
-                    <div class="button-group">
-                        <button type="button" id="backBtn1" class="btn btn-outline">Back</button>
-                        <button type="submit" class="btn btn-primary">Continue →</button>
-                    </div>
-                </form>
-                                        <select id="currencySelect">
-                            <option value="INR">₹ Indian Rupee</option>
-                            <option value="USD">$ US Dollar</option>
-                            <option value="EUR">€ Euro</option>
-                            <option value="GBP">£ British Pound</option>
-                        </select>
-                    </div>
-                    <div class="button-group">
-                        <button type="button" id="backBtn1" class="btn btn-outline">Back</button>
-                        <button type="submit" class="btn btn-primary">Continue →</button>
-                    </div>
-                </form>
                         <label>Currency</label>
                         <select id="currencySelect">
                             <option value="INR">₹ Indian Rupee</option>
