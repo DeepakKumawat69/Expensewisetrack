@@ -337,15 +337,6 @@
             switchPage('step1', 'step2');
         });
 
-
-                // Navigation
-        document.getElementById('nameForm').addEventListener('submit', (e) => {
-            e.preventDefault();
-            userData.name = document.getElementById('nameInput').value;
-            switchPage('step1', 'step2');
-        });
-
-        
         document.getElementById('currencyForm').addEventListener('submit', (e) => {
             e.preventDefault();
             userData.currency = document.getElementById('currencySelect').value;
@@ -417,6 +408,29 @@
             // Remove existing items (except empty state logic handled below)
             listEl.querySelectorAll('.expense-item').forEach(el => el.remove());
 
+            
+            if (expenses.length === 0) {
+                emptyEl.style.display = 'block';
+            } else {
+                emptyEl.style.display = 'none';       // Transaction List
+            const listEl = document.getElementById('transactionList');
+            const emptyEl = document.getElementById('emptyState');
+            
+            // Remove existing items (except empty state logic handled below)
+            listEl.querySelectorAll('.expense-item').forEach(el => el.remove());
+
+            
+            if (expenses.length === 0) {
+                emptyEl.style.display = 'block';
+            } else {
+                emptyEl.style.display = 'none';       // Transaction List
+            const listEl = document.getElementById('transactionList');
+            const emptyEl = document.getElementById('emptyState');
+            
+            // Remove existing items (except empty state logic handled below)
+            listEl.querySelectorAll('.expense-item').forEach(el => el.remove());
+
+            
             if (expenses.length === 0) {
                 emptyEl.style.display = 'block';
             } else {
