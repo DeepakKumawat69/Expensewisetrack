@@ -463,29 +463,24 @@
             document.getElementById('expenseModal').classList.remove('open');
         }
 
-                // Modal Logic
-        function openModal() {
-            document.getElementById('expenseModal').classList.add('open');
-        }
-        function closeModal() {
-            document.getElementById('expenseModal').classList.remove('open');
-        }
-
-                // Modal Logic
-        function openModal() {
-            document.getElementById('expenseModal').classList.add('open');
-        }
-        function closeModal() {
-            document.getElementById('expenseModal').classList.remove('open');
-        }
-
-        
         document.getElementById('addExpenseForm').addEventListener('submit', (e) => {
             e.preventDefault();
             const amount = parseFloat(document.getElementById('modalAmount').value);
             const desc = document.getElementById('modalDesc').value;
             const category = document.getElementById('modalCategory').value;
 
+                    document.getElementById('addExpenseForm').addEventListener('submit', (e) => {
+            e.preventDefault();
+            const amount = parseFloat(document.getElementById('modalAmount').value);
+            const desc = document.getElementById('modalDesc').value;
+            const category = document.getElementById('modalCategory').value;
+
+                    document.getElementById('addExpenseForm').addEventListener('submit', (e) => {
+            e.preventDefault();
+            const amount = parseFloat(document.getElementById('modalAmount').value);
+            const desc = document.getElementById('modalDesc').value;
+            const category = document.getElementById('modalCategory').value;
+            
             expenses.push({ amount, desc, category });
             closeModal();
             updateUI();
